@@ -1,0 +1,75 @@
+.footer {
+    width: 100%;
+  }
+  
+  .footer__hr {
+    border: none;
+    height: 1px;
+    background-color:#9C69E2;
+    width: 100%;
+    margin-top:200px ;
+  }
+  
+  .footer h4{
+    font-family:Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color:#212353;
+    position: absolute;
+    width: 405px;
+    height: 52px;
+    left: 240px;
+    top: 3190px;
+
+    
+
+  }
+  .footer p{
+    font-family: "Nunito Sans",sans-serif;
+    font-size: 18px;
+    position:absolute;
+    width: 584px;
+    height: 29px;
+    left: 240px;
+    top:3300px
+  }
+  .footer__learnmore{
+    background-color:#F063B8;
+    width: 170px;
+    height: 60px;
+    border-radius: 50px;
+    border: none;
+    font-family: "Nunito Sans",sans-serif;
+    font-size: 18px;
+    color: white;
+    margin-left: 947px;
+    margin-top: 90px;
+
+    ;
+  }
+ .footer__request{
+    background-color:#FFFFFF;
+    width: 210px;
+    height: 60px;
+    border-radius: 50px;
+    font-family: "Nunito Sans",sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    border: none;
+    margin-left: 15px;
+     
+ }
+ .footer__rights{
+    font-family: "Nunito Sans",sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    max-width: 360px;
+    max-height: 50px;
+    margin-top: 140px;
+
+ }
+
+.footer__messanger{
+    margin-left: 1286px;
+    margin-top: 100px;
+}

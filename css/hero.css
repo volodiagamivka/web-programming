@@ -1,0 +1,45 @@
+.hero__container{
+    padding: top 300px; ;
+    margin-left: 240px;
+
+}
+.hero__title{
+
+    color:#212353;
+    font-size: 80px;
+    font-family: Helvetica, sans-serif;
+    max-width: 580px;
+    margin-left: 240px;
+    margin-top: 240px;
+
+    
+}
+.hero__paragraph{
+    color:4B5D68;
+    font-family: "Nunito Sans",sans-serif;
+    font-size: 18px;
+    max-width: 380px;
+    margin-left: 240px;
+    margin-top: 50px;
+    
+}
+.hero__girl {
+    width: 885px;
+    height: 468px;
+    margin-top:-270px;
+    margin-left: 200px;
+}
+.hero__button{
+    background-color:#9C69E2;
+    border-radius: 50px;
+    width: 170px;
+    height: 60px;
+    margin-left: 240px;
+    margin-top: 10px;
+    border: none;
+
+}
+.hero__button a{
+    color: white;
+    font-size: 18px;
+}

@@ -1,0 +1,57 @@
+.second__rectangle-container {
+    position: relative;
+    width: 1117px; 
+    height: 560px; 
+    margin-left: 240px;
+    margin-top: 250px; 
+}
+
+.second__rectangle {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.second__text-overlay {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    padding: 15px;
+    box-sizing: border-box;
+    color: #212353;
+}
+
+.second__title {
+    font-family: Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: 500px;
+
+    max-width: 475px;
+    max-height: 170px; 
+    margin-left: 450px;
+    margin-top: 90px; 
+    color: #212353;
+}
+
+.second__paragraph {
+    color: #4B5D68;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 18px;
+    max-width: 477px;
+    max-height: 504px;
+    margin-left: 450px;
+    margin-top: 50px;
+}
+
+.second__girl {
+    height: 420px;
+    width: 424px;
+    margin-top: -500px;
+    margin-bottom:220px ;
+    margin-left: 240px;
+    
+    margin-right:251px;
+}
