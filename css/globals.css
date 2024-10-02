@@ -1,5 +1,13 @@
 body {
     background-color: #F6FAFD;
+    
+}
+@media screen  and (max-width:800px) {
+    body{
+        text-align: center;
+    }
+
+    
 }
 .nunito-sans-font {
     font-family: "Nunito Sans", sans-serif;
@@ -13,7 +21,16 @@ body {
 
 .container {
     margin: 0 auto;
-    max-width: 1600px;
+    max-width: 1140px;
+}
+
+@media screen and (max-width:768px) {
+    .container{
+        padding: 0 20px;
+        max-width: 768px;
+        margin:auto;
+    }
+    
 }
 
 a {

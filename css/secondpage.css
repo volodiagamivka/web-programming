@@ -1,57 +1,89 @@
-.second__rectangle-container {
-    position: relative;
-    width: 1117px; 
-    height: 560px; 
-    margin-left: 240px;
-    margin-top: 250px; 
+.introduction {
+    margin: 200px 0 0 0;
 }
 
-.second__rectangle {
+.introduction .container {
+    padding: 0 92px 0 10px;
+    border-radius: 50px;
+    background: rgba(240, 99, 184, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width: 1050px) {
+    .introduction .container {
+        padding: 15px 5% 15px 10px;
+    }
+
+    .introduction__img {
+        width: 45%;
+        height: auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .introduction .container {
+        flex-direction: column;
+        padding: 30px 30px 0 30px;
+    }
+}
+
+.introduction__img {
+    opacity: 0;
+    transform: translateX(50px);
+    animation: fadeInRight 1.5s ease-out forwards;
+}
+
+@keyframes fadeInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.introduction__img img {
     width: 100%;
     height: 100%;
-    display: block;
+    object-fit: contain;
 }
 
-.second__text-overlay {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-    padding: 15px;
-    box-sizing: border-box;
+.introduction__text {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 2s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.introduction__text h2 {
     color: #212353;
-}
-
-.second__title {
-    font-family: Helvetica, sans-serif;
     font-size: 40px;
-    font-weight: 500px;
-
-    max-width: 475px;
-    max-height: 170px; 
-    margin-left: 450px;
-    margin-top: 90px; 
-    color: #212353;
+    font-weight: 700;
+    line-height: 130%;
+    margin: 0 0 10px 0;
 }
 
-.second__paragraph {
+@media (max-width: 700px) {
+    .introduction__text h2 {
+        text-align: center;
+    }
+}
+
+.introduction__text p {
     color: #4B5D68;
-    font-family: "Nunito Sans", sans-serif;
     font-size: 18px;
-    max-width: 477px;
-    max-height: 504px;
-    margin-left: 450px;
-    margin-top: 50px;
+    font-weight: 500;
+    line-height: 160%;
+    font-family: "Nunito Sans", sans-serif;
 }
 
-.second__girl {
-    height: 420px;
-    width: 424px;
-    margin-top: -500px;
-    margin-bottom:220px ;
-    margin-left: 240px;
-    
-    margin-right:251px;
+.introduction__text h2, 
+.introduction__text p {
+    max-width: 474px;
 }
