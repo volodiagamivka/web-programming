@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #F0F8FF;
+}
+
+h1 {
+    text-align: left;
+}
+
+input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 84%;
+    
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 40px;
+    margin-top: 40px;
+    height: 60px;
+    
+}
+button.a{
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#hotelsList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Максимум 4 колонки в рядку */
+    gap: 20px; /* Відстань між картками */
+    margin-top: 80px;
+}
+
+.hotel-item {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 24px;
+
+}
+#hotelsList  :hover{
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05); 
+}
+
+.hotel-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+#totalVisitors {
+    margin-top: 50px;
+    font-size:26px;
+    font-weight: 600;
+    color: #0056b3;
+}

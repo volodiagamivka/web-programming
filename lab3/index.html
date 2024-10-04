@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Готелі</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Готелі</h1>
+        
+        <hr>
+    </header>
+    
+
+    <input type="text" id="searchInput" placeholder="Пошук за назвою..." oninput="searchHotels()">
+    <div id="totalVisitors"></div>
+    <button class="a" onclick="sortHotels()">Сортувати за найбільшою  кількістю відвідувачів</button>
+    <button class="a" onclick="sortminHotels()">Сортувати за найменшою кількістю відвідувачів</button>
+    <button class= "a" onclick="calculateTotalVisitors()">Підрахувати загальну кількість відвідувачів</button>
+    
+    <div id="hotelsList"></div>
+    
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
