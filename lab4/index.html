@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Готелі</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Готелі</h1>
+        
+        <hr>
+    </header>
+    
+
+    <input type="text" id="searchInput" placeholder="Пошук за назвою..." oninput="searchHotels()">
+    <div id="totalVisitors"></div>
+    <button class="a" onclick="sortHotels()">Сортувати за найбільшою  кількістю відвідувачів</button>
+    <button class="a" onclick="sortminHotels()">Сортувати за найменшою кількістю відвідувачів</button>
+    <button class= "a" onclick="calculateTotalVisitors()">Підрахувати загальну кількість відвідувачів</button>
+    
+    <div id="hotelsList"></div>
+    
+    <form id="addHotelForm" onsubmit="event.preventDefault(); addHotel();">
+        <h2>Додати готель</h2>
+        <label for="hotel-name">Назва готелю:</label><br>
+        <input type="text" id="hotel-name" name="hotel_name" placeholder="Введіть назву готелю" required><br><br>
+
+        <label for="visitors">Кількість відвідувачів:</label><br>
+        <input type="number" id="visitors" name="visitors" placeholder="Введіть кількість відвідувачів" min="1" required><br><br>
+
+        <label for="rooms">Кількість номерів:</label><br>
+        <input type="number" id="rooms" name="rooms" min="1" placeholder="Введіть кількість номерів" required><br><br>
+        <input type="submit" value="Додати готель">
+    </form>
+    
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
