@@ -1,13 +1,13 @@
 import React from 'react';
 import './HotelCard.css';
-const HotelCard = ({ name, visitors, rooms, image, price }) => {
+const HotelCard = ({ name,description,image }) => {
+    const imagePath = require(`../../../assets/images/${image}`);
     return (
         <div className="hotel-card">
-            <img src={image}  />
+            <img src={imagePath} alt={name} className="hotel-image" />
             <h3>{name}</h3>
-            <p>Відвідувачі: {visitors}</p>
-            <p>Кількість кімнат: {rooms}</p>
-            <p>Ціна за ніч: {price} грн</p>
+            <p>{description}</p>
+            
         </div>
     );
 };

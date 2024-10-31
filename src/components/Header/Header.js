@@ -1,16 +1,28 @@
 import React from 'react';
 import './Header.css';
 import logo from '../../assets/images/logo.png';
-const Header = () => {
+import { Link } from 'react-router-dom';
+
+function Header({ showSearch, onSearchChange }) {
     return (
         <header>
-            <img src={logo} alt="Logo" className="logo"  />
+            <img src={logo} alt="Logo" className="logo" />
             <h1>Готелі</h1>
             <nav>
                 <ul>
-                    <li>Головна</li>
-                    <li>Каталог</li>
+                    <li><Link to="/">Головна</Link></li>
+                    <li><Link to="/catalog">Каталог</Link></li>
                     <li>Кошик</li>
+                    <li>
+                        {showSearch && (
+                            <input
+                                type="text"
+                                placeholder="Пошук"
+                                className="search-bar"
+                                onChange={(e) => onSearchChange(e.target.value)}
+                            />
+                        )}
+                    </li>
                 </ul>
             </nav>
         </header>
