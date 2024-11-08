@@ -1,7 +1,8 @@
-// src/components/Grid/Grid.js
 import React, { useState, useEffect } from 'react';
 import './Grid.css'; 
 import HotelCard from './HotelCard/HotelCard';
+import { getProducts } from '../../api/axiosConfig';
+import Loader from '../Loader/Loader';
 
 function Grid() {
     const [hotels, setHotels] = useState([]);
@@ -11,22 +12,22 @@ function Grid() {
 
     useEffect(() => {
         const fetchHotels = async () => {
-            setLoading(true);
+            setLoading(true); 
             try {
-                const response = await fetch('http://localhost:3000/api/hotels');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                setHotels(data);
+                const response = await getProducts();
+                
+
+                setTimeout(() => {
+                    setHotels(response.data);
+                    setLoading(false);
+                }, 2000); 
             } catch (error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
+                setError(error.message); 
+                setLoading(false); 
             }
         };
 
-        fetchHotels();
+        fetchHotels(); 
     }, []);
 
     const visibleHotels = showAll ? hotels : hotels.slice(0, 4);
@@ -35,8 +36,8 @@ function Grid() {
         setShowAll(!showAll);
     };
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (loading) return <Loader />; 
+    if (error) return <div>Error: {error}</div>; 
 
     return (
         <div className="grid">

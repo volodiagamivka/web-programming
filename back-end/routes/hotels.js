@@ -1,37 +1,44 @@
-// routes/hotels.js
 const express = require('express');
 const router = express.Router();
 const hotels = require('../data/hotels.json');
 
-// Маршрут для отримання всіх готелів із фільтрацією
-router.get('/', (req, res) => {
-  const { searchTerm, price, visitors, rooms } = req.query;
+
+router.get('/hotels', (req, res) => {
+  const { price, visitors, rooms } = req.query;
+
+  
 
   let filteredHotels = hotels;
 
-  // Фільтрація за пошуковим терміном
-  if (searchTerm) {
-    filteredHotels = filteredHotels.filter((hotel) =>
-      hotel.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }
-
-  // Фільтрація за ціною
+ 
   if (price) {
-    filteredHotels = filteredHotels.filter((hotel) => hotel.price <= Number(price));
+    filteredHotels = filteredHotels.filter(hotel => hotel.price <= parseInt(price));
+    
   }
 
-  // Фільтрація за кількістю відвідувачів
   if (visitors) {
-    filteredHotels = filteredHotels.filter((hotel) => hotel.visitors <= Number(visitors));
+    filteredHotels = filteredHotels.filter(hotel => hotel.visitors <= parseInt(visitors));
+    
   }
 
-  // Фільтрація за кількістю кімнат
   if (rooms) {
-    filteredHotels = filteredHotels.filter((hotel) => hotel.rooms <= Number(rooms));
+    filteredHotels = filteredHotels.filter(hotel => hotel.rooms <= parseInt(rooms));
+    
   }
-
+  
   res.json(filteredHotels);
+});
+
+
+router.get('/hotels/:id', (req, res) => {
+  const hotelId = parseInt(req.params.id, 10);
+  const hotel = hotels.find(h => h.id === hotelId);
+  
+  if (hotel) {
+    res.json(hotel);
+  } else {
+    res.status(404).json({ message: 'Готель не знайдено' });
+  }
 });
 
 module.exports = router;
