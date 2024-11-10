@@ -22,16 +22,21 @@ router.post('/cart', (req, res) => {
     res.json(cart);
 });
 
-// Оновити кількість товару в кошику
+// Оновити кількість ночей та людей для товару в кошику
 router.put('/cart/:id', (req, res) => {
     const { id } = req.params;
-    const { quantity } = req.body;
+    const { nights, people } = req.body; // Отримуємо нові значення ночей і людей
     const item = cart.find(i => i.id === parseInt(id, 10));
 
     if (item) {
-        item.quantity = quantity;
+        // Оновлюємо кількість ночей і людей
+        item.nights = nights;
+        item.people = people;
+        item.totalPrice = item.price * nights * people; // Перерахунок загальної ціни
+        res.json({ message: 'Кількість ночей та людей оновлена', cart });
+    } else {
+        res.status(404).json({ message: 'Товар не знайдено в кошику' });
     }
-    res.json(cart);
 });
 
 // Видалити товар з кошика

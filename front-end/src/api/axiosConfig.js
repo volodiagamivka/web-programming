@@ -20,9 +20,23 @@ export const getFilteredHotels = async (filters) => {
   }
 };
 
+export const addToCartToServer = async (item) => {
+  try {
+      const response = await axios.post(`${API_URL}/cart`, { item });
+      return response.data;
+  } catch (error) {
+      console.error('Помилка додавання товару до кошика на сервері:', error);
+      throw error;
+  }
+};
 export const getCart = async () => {
-  const response = await axios.get(`${API_URL}/cart`);
-  return response.data;
+  try {
+      const response = await axios.get(`${API_URL}/cart`);
+      return response.data;
+  } catch (error) {
+      console.error("Помилка отримання кошика:", error);
+      return []; // Повертає порожній масив, якщо є помилка
+  }
 };
 
 export const updateCart = async (id, updatedDetails) => {
@@ -33,4 +47,33 @@ export const updateCart = async (id, updatedDetails) => {
 export const removeFromCart = async (id) => {
   const response = await axios.delete(`${API_URL}/cart/${id}`);
   return response.data;
+};
+
+export const getHotelDetails = async (id) => {
+    try {
+        const response = await axios.get(`${API_URL}/hotels/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('Помилка завантаження деталей готелю:', error);
+        throw error;
+    }
+};
+export const updateCartItemDetails = async (itemId, nights, people) => {
+  try {
+      const response = await axios.put(`${API_URL}/cart/${itemId}`, { nights, people });
+      return response.data;
+  } catch (error) {
+      console.error('Помилка оновлення ночей та людей для товару в кошику:', error);
+      throw error;
+  }
+};
+
+export const getHotelById = async (id) => {
+  try {
+      const response = await axios.get(`${API_URL}/hotels/${id}`);
+      return response.data;
+  } catch (error) {
+      console.error('Помилка завантаження готелю:', error);
+      throw error;
+  }
 };

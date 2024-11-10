@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const hotels = require('../data/hotels.json');
+const path = require('path');
+const hotels = require(path.resolve(__dirname, '../data/Hotels.json'));
 
+
+router.get('/hotels-test', (req, res) => {
+  res.json(hotels); // Повертає всі дані з JSON файлу
+});
 
 router.get('/hotels', (req, res) => {
   const { price, visitors, rooms } = req.query;

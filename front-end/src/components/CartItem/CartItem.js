@@ -1,33 +1,35 @@
 import React, { useState } from 'react';
-import { updateCart, removeFromCart } from '../../api/cartAPI'; // Імпортуйте функції API
+import { updateCart, removeFromCart } from '../../api/axiosConfig'; 
 import './CartItem.css';
 
 const CartItem = ({ item, onCartUpdate }) => {
     const [nights, setNights] = useState(item.nights || 1);
     const [people, setPeople] = useState(item.people || 1);
 
-    // Оновлення кількості ночей та осіб і відправлення на бекенд
     const handleNightsChange = async (e) => {
         const updatedNights = Number(e.target.value);
         setNights(updatedNights);
         await updateCart(item.id, { nights: updatedNights, people });
-        onCartUpdate(); // оновлення кошика в основному компоненті
+        onCartUpdate(); 
     };
 
     const handlePeopleChange = async (e) => {
         const updatedPeople = Number(e.target.value);
         setPeople(updatedPeople);
         await updateCart(item.id, { nights, people: updatedPeople });
-        onCartUpdate(); // оновлення кошика в основному компоненті
+        onCartUpdate(); 
     };
 
     const handleRemove = async () => {
         await removeFromCart(item.id);
-        onCartUpdate(); // оновлення кошика в основному компоненті
+        onCartUpdate(); 
     };
 
-    // Обчислення загальної ціни
-    const totalPrice = item.totalPrice || (item.price * nights * people);
+    
+    const maxNights = item.maxNights || 5; 
+    const maxPeople = item.maxPeople || 5; 
+
+    const totalPrice = item.price * nights * people;
 
     return (
         <div className="cart-item">
@@ -41,8 +43,8 @@ const CartItem = ({ item, onCartUpdate }) => {
                 <label>
                     Кількість ночей:
                     <select value={nights} onChange={handleNightsChange}>
-                        {[1, 2, 3, 4, 5].map(night => (
-                            <option key={night} value={night}>{night}</option>
+                        {Array.from({ length: maxNights }, (_, index) => (
+                            <option key={index + 1} value={index + 1}>{index + 1}</option>
                         ))}
                     </select>
                 </label>
@@ -50,8 +52,8 @@ const CartItem = ({ item, onCartUpdate }) => {
                 <label>
                     Кількість осіб:
                     <select value={people} onChange={handlePeopleChange}>
-                        {[1, 2, 3, 4, 5].map(person => (
-                            <option key={person} value={person}>{person}</option>
+                        {Array.from({ length: maxPeople }, (_, index) => (
+                            <option key={index + 1} value={index + 1}>{index + 1}</option>
                         ))}
                     </select>
                 </label>

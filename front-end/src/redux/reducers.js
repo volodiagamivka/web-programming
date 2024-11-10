@@ -1,5 +1,4 @@
-// reducers.js
-import { ADD_TO_CART, UPDATE_ITEM_DETAILS, INCREASE_QUANTITY, DECREASE_QUANTITY, REMOVE_FROM_CART } from './actions';
+import {  UPDATE_ITEM_DETAILS,  REMOVE_FROM_CART } from './actions';
 
 const initialState = {
     cart: [],
@@ -7,7 +6,6 @@ const initialState = {
 
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
-        // reducer.js
         case 'ADD_TO_CART':
             return {
                 ...state,
@@ -28,22 +26,7 @@ const cartReducer = (state = initialState, action) => {
                         : item
                 )
             };
-        case INCREASE_QUANTITY:
-            return {
-                ...state,
-                cart: state.cart.map(item =>
-                    item.id === action.payload ? { ...item, quantity: item.quantity + 1 } : item
-                ),
-            };
-        case DECREASE_QUANTITY:
-            return {
-                ...state,
-                cart: state.cart.map(item =>
-                    item.id === action.payload && item.quantity > 1
-                        ? { ...item, quantity: item.quantity - 1 }
-                        : item
-                ),
-            };
+        
         case REMOVE_FROM_CART:
             return {
                 ...state,

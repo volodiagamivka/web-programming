@@ -1,37 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Info.css';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useHotelContext } from '../../context/HotelContext';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/actions';
+import { addToCartToServer, getHotelById } from '../../api/axiosConfig';
 
 const ItemPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { hotels } = useHotelContext();
     const dispatch = useDispatch();
 
-    const hotel = hotels.find((hotel) => hotel.id === parseInt(id));
-
-    // Локальний стан для кількості ночей і кількості осіб
+    const [hotel, setHotel] = useState(null); 
     const [nights, setNights] = useState(1);
     const [people, setPeople] = useState(1);
 
+    
+    useEffect(() => {
+        const loadHotelData = async () => {
+            try {
+                const data = await getHotelById(id);
+                setHotel(data); 
+            } catch (error) {
+                console.error("Помилка завантаження готелю:", error);
+            }
+        };
+        loadHotelData();
+    }, [id]);
+
+   
     if (!hotel) {
-        return <div>Готель не знайдено.</div>;
+        return <div>Завантаження...</div>;
     }
 
     const goBackToCatalog = () => {
         navigate('/catalog');
     };
 
-    const handleAddToCart = () => {
+    const handleAddToCart = async () => {
         const hotelWithDetails = { ...hotel, nights, people, totalPrice: hotel.price * nights * people };
-        dispatch(addToCart(hotelWithDetails));
-        alert('Товар додано до кошика');
+        
+        try {
+            await addToCartToServer(hotelWithDetails);
+            dispatch(addToCart(hotelWithDetails));
+            alert('Товар додано до кошика');
+        } catch (error) {
+            alert('Помилка додавання товару до кошика');
+        }
     };
 
-    
     const totalPrice = hotel.price * nights * people;
 
     return (
@@ -42,10 +58,6 @@ const ItemPage = () => {
                 className="hotel-details-image"
             />
             <div className="hotel-info">
-                <div className="characteristics">
-                    <span className="characteristic">1 characteristic</span>
-                    <span className="characteristic">2 characteristic</span>
-                </div>
                 <h2>{hotel.name}</h2>
                 <p><strong>Опис:</strong> {hotel.description}</p>
                 <p><strong>Кількість відвідувачів:</strong> {hotel.visitors}</p>
@@ -53,26 +65,32 @@ const ItemPage = () => {
 
                 <label>
                     <span>Кількість ночей:</span>
-                    <select className="ItemsFilter" value={nights} onChange={(e) => setNights(Number(e.target.value))}>
-                        <option value="">Виберіть кількість ночей</option>
-                        {[1, 2, 3, 4, 5].map(night => (
-                            <option key={night} value={night}>{night}</option>
+                    <select 
+                        className="ItemsFilter" 
+                        value={nights} 
+                        onChange={(e) => setNights(Number(e.target.value))}
+                    >
+                        {Array.from({ length: hotel.maxNights }, (_, index) => (
+                            <option key={index + 1} value={index + 1}>{index + 1}</option>
                         ))}
                     </select>
                 </label>
 
                 <label>
                     <span>Кількість осіб:</span>
-                    <select className="ItemsFilter" value={people} onChange={(e) => setPeople(Number(e.target.value))}>
-                        <option value="">Виберіть кількість осіб</option>
-                        {[1, 2, 3, 4, 5].map(person => (
-                            <option key={person} value={person}>{person}</option>
+                    <select 
+                        className="ItemsFilter" 
+                        value={people} 
+                        onChange={(e) => setPeople(Number(e.target.value))}
+                    >
+                        {Array.from({ length: hotel.maxPeople }, (_, index) => (
+                            <option key={index + 1} value={index + 1}>{index + 1}</option>
                         ))}
                     </select>
                 </label>
             </div>
             
-            <p className="price">Total Price: {totalPrice} грн</p>
+            <p className="price">Загальна Вартість: {totalPrice} грн</p>
             <div className="buttons">
                 <button className="go-back-button" onClick={goBackToCatalog}>Повернутись</button>
                 <button 
