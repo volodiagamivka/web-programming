@@ -1,43 +1,32 @@
-// CartItem.js
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { increaseQuantity, decreaseQuantity, removeFromCart, updateItemDetails } from '../../redux/actions';
+import { updateCart, removeFromCart } from '../../api/cartAPI'; // Імпортуйте функції API
 import './CartItem.css';
 
-const CartItem = ({ item }) => {
-    const dispatch = useDispatch();
-
-    // Локальні стани для вибору кількості ночей та осіб
+const CartItem = ({ item, onCartUpdate }) => {
     const [nights, setNights] = useState(item.nights || 1);
     const [people, setPeople] = useState(item.people || 1);
-    
 
-    // Функції для оновлення кількості ночей та осіб і їх відправлення в Redux
-    const handleNightsChange = (e) => {
+    // Оновлення кількості ночей та осіб і відправлення на бекенд
+    const handleNightsChange = async (e) => {
         const updatedNights = Number(e.target.value);
         setNights(updatedNights);
-        dispatch(updateItemDetails(item.id, updatedNights, people));
+        await updateCart(item.id, { nights: updatedNights, people });
+        onCartUpdate(); // оновлення кошика в основному компоненті
     };
 
-    const handlePeopleChange = (e) => {
+    const handlePeopleChange = async (e) => {
         const updatedPeople = Number(e.target.value);
         setPeople(updatedPeople);
-        dispatch(updateItemDetails(item.id, nights, updatedPeople));
+        await updateCart(item.id, { nights, people: updatedPeople });
+        onCartUpdate(); // оновлення кошика в основному компоненті
     };
 
-    const handleIncrease = () => {
-        dispatch(increaseQuantity(item.id));
+    const handleRemove = async () => {
+        await removeFromCart(item.id);
+        onCartUpdate(); // оновлення кошика в основному компоненті
     };
 
-    const handleDecrease = () => {
-        dispatch(decreaseQuantity(item.id));
-    };
-
-    const handleRemove = () => {
-        dispatch(removeFromCart(item.id));
-    };
-
-    // Обчислюємо загальну ціну з перевіркою числових значень
+    // Обчислення загальної ціни
     const totalPrice = item.totalPrice || (item.price * nights * people);
 
     return (

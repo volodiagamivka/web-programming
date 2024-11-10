@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const hotelsRoutes = require('./routes/hotels');
-const cartRouter = require('./routes/cartRouter');
+const cartRouter = require('./routes/cart-router');
 const app = express();
 const PORT = 3000;
 

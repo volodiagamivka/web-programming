@@ -25,19 +25,11 @@ export const getCart = async () => {
   return response.data;
 };
 
-// Додати товар до кошика
-export const addToCart = async (item) => {
-  const response = await axios.post(`${API_URL}/cart`, { item });
+export const updateCart = async (id, updatedDetails) => {
+  const response = await axios.put(`${API_URL}/cart/${id}`, updatedDetails);
   return response.data;
 };
 
-// Оновити кількість товару
-export const updateCart = async (id, quantity) => {
-  const response = await axios.put(`${API_URL}/cart/${id}`, { quantity });
-  return response.data;
-};
-
-// Видалити товар з кошика
 export const removeFromCart = async (id) => {
   const response = await axios.delete(`${API_URL}/cart/${id}`);
   return response.data;

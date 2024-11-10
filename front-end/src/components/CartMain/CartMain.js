@@ -1,27 +1,27 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import CartItem from '../CartItem/CartItem';  // Передбачаємо, що CartItem у папці components/CartItem
-import CartSummary from '../CartSummary/CartSummary'; // Передбачаємо, що CartSummary у папці components/CartSummary
-import './CartMain.css';
+import React, { useEffect, useState } from 'react';
+import { getCart } from '../../api/cartAPI';
+import CartItem from './CartItem';
 
-const CartMain = () => {
-    const cart = useSelector(state => state.cart); // Отримуємо дані кошика з Redux
+const Cart = () => {
+    const [cart, setCart] = useState([]);
+
+    const loadCart = async () => {
+        const cartData = await getCart();
+        setCart(cartData);
+    };
+
+    useEffect(() => {
+        loadCart(); // Завантаження кошика при завантаженні сторінки
+    }, []);
 
     return (
-        <div className="cart-page">
-            <h2>Кошик</h2>
-            {cart.length === 0 ? (
-                <p>Ваш кошик пустий.</p>
-            ) : (
-                <div>
-                    {cart.map(item => (
-                        <CartItem key={item.id} item={item} />
-                    ))}
-                    <CartSummary cart={cart} />
-                </div>
-            )}
+        <div>
+            {cart.map(item => (
+                <CartItem key={item.id} item={item} onCartUpdate={loadCart} />
+            ))}
+            <CartSummary cart={cart} />
         </div>
     );
 };
 
-export default CartMain;
+export default Cart;
