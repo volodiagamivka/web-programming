@@ -10,7 +10,7 @@ const CartSummary = ({ cart }) => {
         <div className="cart-summary">
             <p>Сума: {totalAmount} ГРН</p>
             <button className="back-button" onClick={() => navigate('/catalog')}>Повернутись до каталогу</button>
-            <button className="continue-button">Замовити</button>
+            <button className="continue-button" onClick={() => navigate('/checkout')}>Замовити</button>
         </div>
     );
 };
