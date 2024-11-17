@@ -5,7 +5,7 @@ const hotels = require(path.resolve(__dirname, '../data/Hotels.json'));
 
 
 router.get('/hotels-test', (req, res) => {
-  res.json(hotels); // Повертає всі дані з JSON файлу
+  res.json(hotels); 
 });
 
 router.get('/hotels', (req, res) => {

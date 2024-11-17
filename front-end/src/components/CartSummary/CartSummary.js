@@ -1,19 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './CartSummary.css';
 
 const CartSummary = ({ cart }) => {
-    const navigate = useNavigate();
-    const totalAmount = cart.reduce((total, item) => total + (item.totalPrice || (item.price * item.nights * item.people)), 0);
+    const totalPrice = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
 
     return (
         <div className="cart-summary">
-            <p>Сума: {totalAmount} ГРН</p>
-            <button className="back-button" onClick={() => navigate('/catalog')}>Повернутись до каталогу</button>
-            <button className="continue-button" onClick={() => navigate('/checkout')}>Замовити</button>
+            <h3>Загальна вартість: {totalPrice.toFixed(2)} грн</h3>
         </div>
     );
 };
-
 
 export default CartSummary;

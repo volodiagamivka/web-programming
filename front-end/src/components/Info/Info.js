@@ -37,7 +37,7 @@ const ItemPage = () => {
     };
 
     const handleAddToCart = async () => {
-        const hotelWithDetails = { ...hotel, nights, people, totalPrice: hotel.price * nights * people };
+        const hotelWithDetails = { ...hotel,hotelId: hotel.id, nights, people, totalPrice: hotel.price * nights * people };
         
         try {
             await addToCartToServer(hotelWithDetails);

@@ -4,43 +4,81 @@
     margin-bottom: 10px;
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
 }
 
-.item-image img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
+.item-image  {
+    width: 90px;
+    height: 90px;
+    margin-right: 20px;
+    border-radius: 5px;
+    object-fit: cover;
 }
 
 .item-details {
     flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.item-quantity {
+.item-details label {
+    font-size: 14px;
+    color: #555;
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
-.item-quantity button {
-    background: #ddd;
-    border: none;
+.item-details select,
+.item-details input {
     padding: 5px;
-    cursor: pointer;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 70px;
+    text-align: center;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.item-quantity span {
-    margin: 0 10px;
+.item-details select:focus,
+.item-details input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+    outline: none;
 }
 
 .item-total {
     flex: 1;
     text-align: right;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
 }
 
-.remove-button {
-    background: red;
+.update-item-button,
+.remove-item-button {
+    background: #007bff;
     color: white;
     border: none;
     padding: 5px 10px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+    transition: background-color 0.3s;
+}
+
+.update-item-button:hover,
+.remove-item-button:hover {
+    background: #0056b3;
+}
+
+.remove-item-button {
+    background: #dc3545;
+}
+
+.remove-item-button:hover {
+    background: #a71d2a;
 }
